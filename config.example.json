@@ -1,0 +1,12 @@
+{
+  "iftttKey": "YOUR_IFTTT_MAKER_KEY_HERE",
+  "sensors": [
+    {
+      "pin": "B2",
+      "pull": "down",
+      "rise": {
+        "event": "boilerWaterLevelLow"
+      }
+    }
+  ]
+}

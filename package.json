@@ -1,0 +1,48 @@
+{
+  "name": "tessel-ifttt",
+  "version": "0.1.0",
+  "description": "Send Tessel digital input changes to IFTTT",
+  "author": {
+    "name": "Donavon West",
+    "email": "email@donavon.com",
+    "url": "http://donavon.com"
+  },
+  "engines": {
+    "node": "^4.4"
+  },
+  "main": "./index.js",
+  "scripts": {
+    "_build": "npm run lint && babel src --out-dir lib && babel index.src.js -o index.js",
+    "builddev": "cross-env NODE_ENV=development npm run _build",
+    "buildprod": "cross-env NODE_ENV=production npm run _build",
+    "predeploy": "npm run lint && npm run buildprod",
+    "deploy": "t2 push index.js",
+    "lint": "eslint .",
+    "_t2run": "t2 run index.js",
+    "prestart": "npm run builddev",
+    "start": "npm run _t2run",
+    "prestartprod": "npm run buildprod",
+    "startprod": "npm run _t2run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/donavon/tessel-ifttt",
+  "keywords": [
+    "tessel"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-minify-dead-code-elimination": "^0.1.2",
+    "babel-plugin-transform-node-env-inline": "0.0.2",
+    "babel-preset-es2015-node4": "^2.1.1",
+    "cross-env": "^3.1.4",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "request": "^2.79.0"
+  }
+}
