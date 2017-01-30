@@ -23,11 +23,12 @@
     "start": "npm run _t2run",
     "prestartprod": "npm run buildprod",
     "startprod": "npm run _t2run",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "homepage": "https://github.com/donavon/tessel-ifttt",
   "keywords": [
-    "tessel"
+    "tessel",
+    "ifttt"
   ],
   "license": "MIT",
   "devDependencies": {
@@ -39,7 +40,8 @@
     "cross-env": "^3.1.4",
     "eslint": "^3.13.1",
     "eslint-config-airbnb-base": "^11.0.1",
-    "eslint-plugin-import": "^2.2.0"
+    "eslint-plugin-import": "^2.2.0",
+    "jest-cli": "^18.1.0"
   },
   "dependencies": {
     "lodash": "^4.17.4",

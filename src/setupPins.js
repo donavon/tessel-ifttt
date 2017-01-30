@@ -1,8 +1,4 @@
-import createSetupPin from './createSetupPin';
-
-const setupPins = (props, ifttt) => {
-  const { config: { sensors } } = props;
-  const setupPin = createSetupPin(props, ifttt);
+const setupPins = (sensors, setupPin) => {
   sensors.forEach(setupPin); // Loop for each sensor array item in the config file.
 };
 

@@ -5,7 +5,12 @@
       "pin": "B2",
       "pull": "down",
       "rise": {
-        "event": "boilerWaterLevelLow"
+        "event": "message",
+        "value1": "let there be light!"
+      },
+      "fall": {
+        "event": "message",
+        "value1": "it is now dark"
       }
     }
   ]

@@ -17,22 +17,22 @@ const createSetupPin = ({ tessel, log, config, ledGreen }, ifttt) => {
   };
 
   return ({ pin: pinDesignation, pull = 'up', rise = {}, fall = {} }) => {
-    const pin = pinFromDesignation(pinDesignation);
+    const pin = pinFromDesignation(pinDesignation); // ex: "B2" to a tessel pin object
 
-    const onPinChange = (value, event) => { // Here when a pin rises or falls.
-      if (process.env.NODE_ENV !== 'production') {
-        log(`Emitting the "${event}" event to IFTTT`);
+    const onPinChange = value => {
+      const { event, value1, value2, value3 } = value ? rise : fall;
+      if (event) {
+        if (process.env.NODE_ENV !== 'production') {
+          const edge = value ? 'rise' : 'fall';
+          log(`${pinDesignation}:${edge} - Emitting the "${event}" event to IFTTT`);
+        }
+        const body = { value1, value2, value3 };
+        ifttt.emit(event, { body }).then(emitSuccess).catch(emitError);
       }
-      ifttt.emit(event).then(emitSuccess).catch(emitError);
     };
 
     const onPinReady = () => { // Here when the pull up/down callback happens.
-      if (rise.event) {  // Setup rise and fall handlers.
-        pin.on('rise', () => { onPinChange(1, rise.event); });
-      }
-      if (fall.event) {
-        pin.on('fall', () => { onPinChange(0, fall.event); });
-      }
+      pin.on('change', onPinChange);
     };
 
     pin.pull(`pull${pull}`, onPinReady); // Setup the resistor to pull up (default) or down.

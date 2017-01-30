@@ -4,6 +4,6 @@
       "production": {
         "plugins": ["transform-node-env-inline"]
       }
-    }
-
+    },
+    "ignore": "__tests__, __mocks__",
 }
